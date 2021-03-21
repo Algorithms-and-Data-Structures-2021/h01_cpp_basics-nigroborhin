@@ -4,63 +4,70 @@
 
 // перечисление: биологический пол автора
 enum class Sex {
-  MALE,
-  FEMALE,
-  UNDEFINED  // Т - толерантность
+    MALE,
+    FEMALE,
+    UNDEFINED  // Т - толерантность
 };
 
 // структура: автор книг
 struct Author {
- public:
-  /**
-   * Создает объект автора книги.
-   * Инициализирует поля объекта переданными значениями.
-   *
-   * @param full_name - полное имя автора книги
-   * @param age - возраст автора
-   * @param sex - биологический пол автора
-   */
-  Author(const std::string &full_name, int age, Sex sex);
+public:
+    /**
+     * Создает объект автора книги.
+     * Инициализирует поля объекта переданными значениями.
+     *
+     * @param full_name - полное имя автора книги
+     * @param age - возраст автора
+     * @param sex - биологический пол автора
+     */
+    Author(const std::string &full_name, int age, Sex sex);
 
-  // setters
-  void SetAge(int age);
-  void SetSex(Sex sex);
-  void SetFullName(const std::string &full_name);
+    // setters
+    void SetAge(int age);
 
-  // getters
-  int GetAge() const;
-  Sex GetSex() const;
-  const std::string &GetFullName() const;
+    void SetSex(Sex sex);
 
-  // === необходимо для тестов ===
-  Author() = default;
-  virtual ~Author() = default;
-  friend bool operator==(const Author &lhs, const Author &rhs);
-  friend bool operator!=(const Author &lhs, const Author &rhs);
+    void SetFullName(const std::string &full_name);
 
- public:
-  // константа для валидации возраста - минимальный возраст автора
-  static constexpr int kMinAuthorAge = 16;
+    // getters
+    int GetAge() const;
 
- private:
-  // поля структуры
-  std::string full_name_;    // полное имя
+    Sex GetSex() const;
 
-  int age_{0};               // возраст (измеряется в годах)
-  Sex sex_{Sex::UNDEFINED};  // биологический пол
+    const std::string &GetFullName() const;
+
+    // === необходимо для тестов ===
+    Author() = default;
+
+    virtual ~Author() = default;
+
+    friend bool operator==(const Author &lhs, const Author &rhs);
+
+    friend bool operator!=(const Author &lhs, const Author &rhs);
+
+public:
+    // константа для валидации возраста - минимальный возраст автора
+    static constexpr int kMinAuthorAge = 16;
+
+private:
+    // поля структуры
+    std::string full_name_;    // полное имя
+
+    int age_{0};               // возраст (измеряется в годах)
+    Sex sex_{Sex::UNDEFINED};  // биологический пол
 };
 
 // === необходимо для тестов ===
 
 inline bool operator==(const Author &lhs, const Author &rhs) {
-  if (lhs.age_ != rhs.age_) return false;
-  if (lhs.sex_ != rhs.sex_) return false;
-  if (lhs.full_name_ != rhs.full_name_) return false;
-  return true;
+    if (lhs.age_ != rhs.age_) return false;
+    if (lhs.sex_ != rhs.sex_) return false;
+    if (lhs.full_name_ != rhs.full_name_) return false;
+    return true;
 }
 
 inline bool operator!=(const Author &lhs, const Author &rhs) {
-  return !(lhs == rhs);
+    return !(lhs == rhs);
 }
 
 // внутренние проверки на этапе компиляции (не обращайте внимания)
