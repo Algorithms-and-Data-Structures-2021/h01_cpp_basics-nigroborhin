@@ -40,7 +40,7 @@ BookStore::BookStore(const std::string &name) : name_{name} {
 
 // 3. реализуйте деструктор ...
 BookStore::~BookStore() {
-    delete storage_;
+    delete[] storage_;
     storage_ = nullptr;
     storage_capacity_ = 0;
     storage_size_ = 0;
